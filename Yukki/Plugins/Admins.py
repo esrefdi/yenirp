@@ -32,34 +32,34 @@ from Yukki.Utilities.youtube import get_m3u8, get_yt_info_id
 loop = asyncio.get_event_loop()
 
 
-__MODULE__ = "Voice Chat"
+__MODULE__ = "Səsli Söhbət"
 __HELP__ = """
 
 
 /pause
-- Pause the playing music on voice chat.
+- Səsli söhbətdə ifa olunan musiqini dayandırın.
 
 /resume
-- Resume the paused music on voice chat.
+- Səsli söhbətdə dayandırılmış musiqini davam etdirin.
 
 /skip
-- Skip the current playing music on voice chat
+- Səsli söhbətdə cari ifa olunan musiqini atlayın
 
 /end or /stop
-- Stop the playout.
+- Oyunu dayandırın.
 
 /queue
-- Check queue list.
+- Növbə siyahısını yoxlayın.
 
 
 **Note:**
-Only for Sudo Users
+Yalnız Sudo İstifadəçiləri üçün
 
 /activevc
-- Check active voice chats on bot.
+- Botda aktiv səsli söhbətləri yoxlayın.
 
 /activevideo
-- Check active video calls on bot.
+- Botda aktiv video zəngləri yoxlayın.
 """
 
 
