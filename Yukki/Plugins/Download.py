@@ -300,7 +300,7 @@ def duration(vid_file_path):
 
     if "axınlar" in _json:
         # commonly stream 0 is the video
-        for s in _json["axınlar]:
+        for s in _json["axınlar"]:
             if "müddəti" in s:
                 return float(s["müddəti"])
 
