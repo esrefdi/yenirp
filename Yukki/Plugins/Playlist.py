@@ -15,24 +15,24 @@ from Yukki.Inline import (add_genre_markup, check_genre_markup, check_markup,
                           others_markup, play_genre_playlist, playlist_markup,
                           third_playlist_markup)
 
-__MODULE__ = "Playlist"
+__MODULE__ = "Pleylist"
 __HELP__ = """
 
 
 /playplaylist 
-- Start playing Your Saved Playlist.
+- Saxlanmış Pleylistinizi oynamağa başlayın.
 
 
 /playlist 
-- Check Your Saved Playlist On Servers.
+- Serverlərdə Saxlanmış Pleylistinizi yoxlayın.
 
 
 /delmyplaylist
-- Delete any saved music in your playlist
+- Pleylistinizdə saxlanan hər hansı musiqini silin
 
 
 /delgroupplaylist
-- Delete any saved music in your group's playlist [Requires Admin Rights.]
+- Qrupunuzun pleylistində saxlanmış hər hansı musiqini silin [İdarəetmə hüquqları tələb olunur.]
 """
 
 
@@ -56,7 +56,7 @@ async def play_playlist_cmd(_, message):
                     third_name = user.first_name
                 except:
                     userid = user
-                    third_name = "Deleted Account"
+                    third_name = "Silinmiş Hesab"
             except:
                 try:
                     user = await app.get_users(user)
