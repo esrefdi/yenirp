@@ -92,7 +92,7 @@ async def play(_, message: Message):
                 else "ogg"
             )
         )
-        file_name = path.join(path.realpath("downloads"), file_name)
+        file_name = path.join(path.realpath("yükləmələr"), file_name)
         file = await convert(
             (await message.reply_to_message.download(file_name))
             if (not path.isfile(file_name))
@@ -232,7 +232,7 @@ async def Music_Stream(_, CallbackQuery):
         )
     await CallbackQuery.answer(f"Processing:- {title[:20]}", show_alert=True)
     mystic = await CallbackQuery.message.reply_text(
-        f"**{MUSIC_BOT_NAME} Downloader**\n\n**Başlıq:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
+        f"**{MUSIC_BOT_NAME} Yükləyici**\n\n**Başlıq:** {title[:50]}\n\n0% ▓▓▓▓▓▓▓▓▓▓▓▓ 100%"
     )
     downloaded_file = await loop.run_in_executor(
         None, download, videoid, mystic, title
