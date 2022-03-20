@@ -11,7 +11,7 @@ from Yukki.Database import get_assistant, save_assistant
 from Yukki.Utilities.assistant import get_assistant_details
 
 
-@app.on_callback_query(filters.regex("unban_assistant"))
+@app.on_callback_query(filters.regex("ban_köməkçisi"))
 async def unban_assistant_(_, CallbackQuery):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
@@ -19,7 +19,7 @@ async def unban_assistant_(_, CallbackQuery):
     a = await app.get_chat_member(CallbackQuery.message.chat.id, BOT_ID)
     if not a.can_restrict_members:
         return await CallbackQuery.answer(
-            "I am not having ban/unban user permission. Ask any admin to unban the assistant.",
+            "İstifadəçinin qadağası/bandan çıxarılması icazəm yoxdur.  İstənilən admindən köməkçinin qadağanını ləğv etməsini xahiş edin.",
             show_alert=True,
         )
     else:
@@ -29,31 +29,31 @@ async def unban_assistant_(_, CallbackQuery):
             )
         except:
             return await CallbackQuery.answer(
-                "Failed to unban",
+                "Qadağanı ləğv etmək alınmadı",
                 show_alert=True,
             )
         return await CallbackQuery.edit_message_text(
-            "Assistant Unbanned. Try Playing Now."
+            "Assistent Qadağan Edildi.  İndi Oynamağa cəhd edin."
         )
 
 
 def AssistantAdd(mystic):
     async def wrapper(_, message):
-        _assistant = await get_assistant(message.chat.id, "assistant")
+        _assistant = await get_assistant(message.chat.id, "köməkçi")
         if not _assistant:
             ran_ass = random.choice(random_assistant)
             assis = {
-                "saveassistant": ran_ass,
+                "xilasedici köməkçi": ran_ass,
             }
-            await save_assistant(message.chat.id, "assistant", assis)
+            await save_assistant(message.chat.id, "köməkçi", assis)
         else:
-            ran_ass = _assistant["saveassistant"]
+            ran_ass = _assistant["xilasedici köməkçi"]
         if ran_ass not in random_assistant:
             ran_ass = random.choice(random_assistant)
             assis = {
-                "saveassistant": ran_ass,
+                "xilasedici köməkçi": ran_ass,
             }
-            await save_assistant(message.chat.id, "assistant", assis)
+            await save_assistant(message.chat.id, "köməkçi", assis)
         ASS_ID, ASS_NAME, ASS_USERNAME, ASS_ACC = await get_assistant_details(
             ran_ass
         )
@@ -63,7 +63,7 @@ def AssistantAdd(mystic):
                 [
                     [
                         InlineKeyboardButton(
-                            text="🗑 Unban Assistant",
+                            text="🗑 Köməkçinin qadağasını aradan qaldırın",
                             callback_data=f"unban_assistant a|{ASS_ID}",
                         )
                     ],
@@ -71,12 +71,12 @@ def AssistantAdd(mystic):
             )
             if b.status == "kicked":
                 return await message.reply_text(
-                    f"Assistant Account[{ASS_ID}] is banned.\nUnban it first to use Music Bot\n\nUsername: @{ASS_USERNAME}",
+                    f"Assistent Hesabı[{ASS_ID}] qadağan edilib.\nMusiqi Botundan istifadə etmək üçün əvvəlcə onu blokdan çıxarın\n\nİstifadəçi adı: @{ASS_USERNAME}",
                     reply_markup=key,
                 )
-            if b.status == "banned":
+            if b.status == "qadağan edilib":
                 return await message.reply_text(
-                    f"Assistant Account[{ASS_ID}] is banned.\nUnban it first to use Music Bot\n\nUsername: @{ASS_USERNAME}",
+                    f"Assistent Hesabı[{ASS_ID}] qadağan edilib.\nMusiqi Botundan istifadə etmək üçün əvvəlcə onu blokdan çıxarın\n\nİstifadəçi adı: @{ASS_USERNAME}",
                     reply_markup=key,
                 )
         except UserNotParticipant:
@@ -87,7 +87,7 @@ def AssistantAdd(mystic):
                     pass
                 except Exception as e:
                     await message.reply_text(
-                        f"__Assistant Failed To Join__\n\n**Reason**: {e}"
+                        f"__Assistent qoşula bilmədi__\n\n**Səbəb**: {e}"
                     )
                     return
             else:
@@ -101,13 +101,13 @@ def AssistantAdd(mystic):
                         )
                     await ASS_ACC.join_chat(invitelink)
                     await message.reply(
-                        f"{ASS_NAME} Joined Successfully",
+                        f"{ASS_NAME} Uğurla Qoşuldu",
                     )
                 except UserAlreadyParticipant:
                     pass
                 except Exception as e:
                     await message.reply_text(
-                        f"__Assistant Failed To Join__\n\n**Reason**: {e}"
+                        f"__Assistent qoşula bilmədi__\n\n**Səbəb**: {e}"
                     )
                     return
         return await mystic(_, message)
