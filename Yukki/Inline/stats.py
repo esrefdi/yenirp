@@ -143,15 +143,15 @@ stats6 = InlineKeyboardMarkup(
         ],
         [
             InlineKeyboardButton(
-                text="Bot Stats", callback_data=f"bot_stats"
+                text="Bot Statistikası", callback_data=f"bot_stats"
             ),
             InlineKeyboardButton(
-                text="MongoDB Stats", callback_data=f"mongo_stats"
+                text="MongoDB Statistikası", callback_data=f"mongo_stats"
             ),
         ],
         [
             InlineKeyboardButton(
-                text="General Stats", callback_data=f"gen_stats"
+                text="Ümumi Statistika", callback_data=f"gen_stats"
             )
         ],
     ]
@@ -162,7 +162,7 @@ stats7 = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(
-                text="Getting Assistant Stats....",
+                text="Assistent Statistikası əldə edilir....",
                 callback_data=f"wait_stats",
             )
         ]
