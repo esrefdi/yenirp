@@ -6,22 +6,22 @@ def checker(mystic):
     async def wrapper(_, message):
         if message.sender_chat:
             return await message.reply_text(
-                "You're an __Anonymous Admin__ in this Chat Group!\nRevert back to User Account From Admin Rights."
+                "Siz bu Çat Qrupunda __Anonim Admin__siniz!\nİdarəetmə Hüquqlarından İstifadəçi Hesabına qayıdın."
             )
         blacklisted_chats_list = await blacklisted_chats()
         if message.chat.id in blacklisted_chats_list:
             await message.reply_text(
-                f"**Blacklisted Chat**\n\nYour chat has been blacklisted by Sudo Users.Ask any __SUDO USER__ to whitelist.\nCheck Sudo Users List [From Here](https://t.me/{BOT_USERNAME}?start=sudolist)"
+                f"**Qara Siyahıya salınmış Söhbət**\n\nSöhbətiniz Sudo İstifadəçiləri tərəfindən qara siyahıya salınıb. İstənilən __SUDO USER__-dan ağ siyahıya salınmasını istəyin.\nSudo İstifadəçilərinin Siyahısını yoxlayın [Buradan](https://t.me/{BOT_USERNAME}?start=sudolist)"
             )
             return await app.leave_chat(message.chat.id)
         if await is_on_off(1):
             if int(message.chat.id) != int(LOG_GROUP_ID):
                 return await message.reply_text(
-                    f"Bot is under Maintenance. Sorry for the inconvenience!"
+                    f"Bot baxım altındadır.  Narahatçılığa görə üzr istəyirik!"
                 )
         if await is_gbanned_user(message.from_user.id):
             return await message.reply_text(
-                f"**Gbanned User**\n\nYou're gbanned from using Bot.Ask any __SUDO USER__ to ungban.\nCheck Sudo Users List [From Here](https://t.me/{BOT_USERNAME}?start=sudolist)"
+                f"**Qanlanmış İstifadəçi**\n\nSiz Botdan istifadə etməkdən məhrum olmusunuz. İstənilən __SUDO USER__-dan ungban-a müraciət edin.\nSudo İstifadəçilərinin Siyahısını Yoxlayın [Buradan](https://t.me/{BOT_USERNAME}?start=sudolist)"
             )
         return await mystic(_, message)
 
@@ -38,7 +38,7 @@ def checkerCB(mystic):
         if await is_on_off(1):
             if int(CallbackQuery.message.chat.id) != int(LOG_GROUP_ID):
                 return await CallbackQuery.answer(
-                    "Bot is under Maintenance. Sorry for the inconvenience!",
+                    "Bot baxım altındadır.  Narahatçılığa görə üzr istəyirik!",
                     show_alert=True,
                 )
         if await is_gbanned_user(CallbackQuery.from_user.id):
